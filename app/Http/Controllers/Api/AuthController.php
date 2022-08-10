@@ -16,7 +16,26 @@ class AuthController extends Controller
         return response()->json([
             'res' => true,
             'result' => [
-                'User' => User::orderBy('email','ASC')->paginate(25)
+                'User' => User::orderBy('email','ASC')->paginate(25),
+            ]
+        ]);
+    }
+
+    public function userMe()
+    {
+        $akses = [
+            [ "label" => "LF-E011 SPAREPART", "url" => "/lfe011" ],
+            [ "label" => "LF-E016 OLI", "url" => "/lfe016" ],
+            [ "label" => "LF-B011 CO", "url" => "/lfb011" ]
+        ];
+        $akses = [
+            'user' => true, 'lfb011' => true, 'lfe011' => false
+        ];
+        return response()->json([
+            'res' => true,
+            'user' => [
+                'user' => User::find(auth('sanctum')->user()->id),
+                'akses' => $akses
             ]
         ]);
     }

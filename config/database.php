@@ -43,6 +43,28 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'lsbl_12_dummy_othr' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_12_HOST', '127.0.0.1'),
+            'port' => env('DB_12_PORT', '3306'),
+            'database' => env('DB_12_DATABASE_DUMMT_OTHR', 'forge'),
+            'username' => env('DB_12_USERNAME', 'forge'),
+            'password' => env('DB_12_PASSWORD', ''),
+            'unix_socket' => env('DB_12_SOCKET', ''),
+            // 'charset' => 'utf8mb4',
+            // 'collation' => 'utf8mb4_unicode_ci',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
